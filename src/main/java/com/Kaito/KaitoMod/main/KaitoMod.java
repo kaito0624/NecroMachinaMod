@@ -1,5 +1,6 @@
 package com.Kaito.KaitoMod.main;
 
+import com.Kaito.KaitoMod.regi.KaitoModItems;
 import com.Kaito.KaitoMod.regi.tab.KaitoModTabs;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +12,7 @@ public class KaitoMod {
     //コンストラクタ
     public KaitoMod(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        KaitoModItems.ITEMS.register(bus);
         KaitoModTabs.MOD_TABS.register(bus);
     }
 }

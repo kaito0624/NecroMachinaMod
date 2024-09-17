@@ -1,6 +1,7 @@
 package com.Kaito.KaitoMod.regi.tab;
 
 import com.Kaito.KaitoMod.main.KaitoMod;
+import com.Kaito.KaitoMod.regi.KaitoModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -19,7 +20,7 @@ public class KaitoModTabs {
 
     public static final RegistryObject<CreativeModeTab> KAITO_MAIN = MOD_TABS.register("kaito_main",
             ()->{return CreativeModeTab.builder()
-                    .icon(()->new ItemStack(Blocks.CHERRY_PLANKS))
+                    .icon(()->new ItemStack(KaitoModItems.KAITO_INGOD.get()))
                     .title(Component.translatable("itemGroup.Kaito_main"))
                     .displayItems((param,output)->{
                         for(Item item:KaitoMain.items){
