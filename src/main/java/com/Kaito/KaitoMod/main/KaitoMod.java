@@ -1,5 +1,6 @@
 package com.Kaito.KaitoMod.main;
 
+import com.Kaito.KaitoMod.regi.KaitoModBlocks;
 import com.Kaito.KaitoMod.regi.KaitoModItems;
 import com.Kaito.KaitoMod.regi.tab.KaitoModTabs;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,6 +14,8 @@ public class KaitoMod {
     public KaitoMod(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         KaitoModItems.ITEMS.register(bus);
+        KaitoModBlocks.Blocks.BLOCKS.register(bus);
+        KaitoModBlocks.BlockItems.BLOCK_ITEMS.register(bus);
         KaitoModTabs.MOD_TABS.register(bus);
     }
 }
