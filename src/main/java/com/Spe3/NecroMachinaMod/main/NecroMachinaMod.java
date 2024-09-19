@@ -1,5 +1,6 @@
 package com.Spe3.NecroMachinaMod.main;
 
+import com.Spe3.NecroMachinaMod.entity.NecroMachinaEntities;
 import com.Spe3.NecroMachinaMod.regi.NecroMachinaModItems;
 import com.Spe3.NecroMachinaMod.regi.NecroMachinaModBlocks;
 import com.Spe3.NecroMachinaMod.regi.tab.NecroMachinaTabs;
@@ -24,5 +25,8 @@ public class NecroMachinaMod {
 
         // タブの登録
         NecroMachinaTabs.MOD_TABS.register(bus);
+
+        //エンティティレジストリをイベントパスに追加
+        NecroMachinaEntities.register(bus);
     }
 }

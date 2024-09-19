@@ -1,5 +1,6 @@
 {
   "itemGroup.necromachina_main" : "ネクロマシンMOD",
   "item.necromachinamod.skeleton_remains" : "スケルトンの骸",
-  "item.necromachinamod.soul" : "魂"
+  "item.necromachinamod.soul" : "魂",
+  "entity.necromachinamod.blue_skeleton" : "ブルースケルトン"
 }

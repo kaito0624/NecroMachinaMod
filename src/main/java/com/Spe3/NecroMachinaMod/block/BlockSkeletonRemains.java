@@ -1,5 +1,7 @@
 package com.Spe3.NecroMachinaMod.block;
 
+import com.Spe3.NecroMachinaMod.entity.NecroMachinaEntities;
+import com.Spe3.NecroMachinaMod.entity.custom.BlueSkeleton;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -26,10 +28,11 @@ public class BlockSkeletonRemains extends Block {
 
             // プレイヤーが "soul" アイテムを持っているかチェック
             if (heldItem.getItem() instanceof com.Spe3.NecroMachinaMod.item.ItemSoul) {
-                // 普通のスケルトンを生成
-                Skeleton skeleton = new Skeleton(EntityType.SKELETON, level);
-                skeleton.setPos(pos.getX(), pos.getY() + 1, pos.getZ());
-                level.addFreshEntity(skeleton);
+
+                //ブルースケルトン召喚
+                BlueSkeleton blueSkeleton = new BlueSkeleton(NecroMachinaEntities.BLUE_SKELETON.get() ,level);
+                blueSkeleton.setPos(pos.getX(), pos.getY() + 1, pos.getZ());
+                level.addFreshEntity(blueSkeleton);
 
                 // "soul" アイテムを1つ消費
                 heldItem.shrink(1);
