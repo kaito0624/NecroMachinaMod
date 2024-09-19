@@ -1,5 +1,6 @@
 package com.Spe3.NecroMachinaMod.main;
 
+import com.Spe3.NecroMachinaMod.regi.NecroMachinaModItems;
 import com.Spe3.NecroMachinaMod.regi.tab.NecroMachinaTabs;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -13,7 +14,8 @@ public class NecroMachinaMod {
     public NecroMachinaMod(){
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        NecroMachinaModItems.ITEMS.register(bus);
         NecroMachinaTabs.MOD_TABS.register(bus);
-        
+
     }
 }

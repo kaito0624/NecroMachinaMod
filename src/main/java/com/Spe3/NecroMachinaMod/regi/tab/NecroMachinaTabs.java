@@ -11,10 +11,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+//クリエイティブタブ
 public class NecroMachinaTabs {
 
     public static final DeferredRegister<CreativeModeTab> MOD_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, NecroMachinaMod.MOD_ID);
 
+    //ネクロマシンMODタブ
     public static final RegistryObject<CreativeModeTab> NECROMACHINA_MAIN = MOD_TABS.register("necromachina_main",
             ()->{return CreativeModeTab.builder()
                     .icon(()->new ItemStack(Items.SKELETON_SKULL))
