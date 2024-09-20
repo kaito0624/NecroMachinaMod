@@ -16,7 +16,7 @@ public class NecroMachinaEntities {
 
     public static final RegistryObject<EntityType<BlueSkeleton>> BLUE_SKELETON =
             ENTITY_TYPES.register("blue_skeleton",
-                    () -> EntityType.Builder.of(BlueSkeleton::new, MobCategory.MONSTER)
+                    () -> EntityType.Builder.of(BlueSkeleton::new, MobCategory.CREATURE)
                             .build("blue_skeleton"));
 
     public static void register(IEventBus eventBus){
