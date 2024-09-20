@@ -1,9 +1,10 @@
 package com.Spe3.NecroMachinaMod.entity.custom;
 
+import com.Spe3.NecroMachinaMod.entity.goal.FollowOwnerCustomGoal;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.player.Player;
@@ -33,8 +34,8 @@ public class BlueSkeleton extends WitherSkeleton {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        // プレイヤーをフォローするAIゴールを追加
-        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+        // 独自のフォローゴールを追加
+        this.goalSelector.addGoal(1, new FollowOwnerCustomGoal(this, 1.0D, 10.0F, 2.0F));
         // 敵を攻撃するAIゴールを追加
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
     }
@@ -65,7 +66,7 @@ public class BlueSkeleton extends WitherSkeleton {
     public LivingEntity getOwner() {
         try {
             UUID uuid = this.ownerUUID;
-            return uuid == null ? null : this.getLevel().getPlayerByUUID(uuid); // getLevel()でアクセス
+            return uuid == null ? null : this.getCommandSenderWorld().getPlayerByUUID(uuid); // getCommandSenderWorld()でアクセス
         } catch (IllegalArgumentException var2) {
             return null;
         }
