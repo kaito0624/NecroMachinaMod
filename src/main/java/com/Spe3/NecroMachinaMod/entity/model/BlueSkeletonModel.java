@@ -9,15 +9,24 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity; // Make sure to import this
+import net.minecraft.world.entity.Entity;
 
 public class BlueSkeletonModel<T extends Entity> extends EntityModel<T> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(NecroMachinaMod.MOD_ID, "blue_skeleton_layer"), "main");
 	private final ModelPart waist;
+	private final ModelPart head;
+	private final ModelPart rightArm;
+	private final ModelPart leftArm;
+	private final ModelPart rightLeg;
+	private final ModelPart leftLeg;
 
 	public BlueSkeletonModel(ModelPart root) {
 		this.waist = root.getChild("waist");
+		this.head = this.waist.getChild("body").getChild("head");
+		this.rightArm = this.waist.getChild("body").getChild("rightArm");
+		this.leftArm = this.waist.getChild("body").getChild("leftArm");
+		this.rightLeg = this.waist.getChild("body").getChild("rightLeg");
+		this.leftLeg = this.waist.getChild("body").getChild("leftLeg");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -48,14 +57,22 @@ public class BlueSkeletonModel<T extends Entity> extends EntityModel<T> {
 	}
 
 	@Override
-	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		// Animation logic here
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		// 頭の回転
+		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
+		this.head.xRot = headPitch * ((float) Math.PI / 180F);
+
+		// 腕の振り動作
+		this.rightArm.xRot = (float) Math.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F;
+		this.leftArm.xRot = (float) Math.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
+
+		// 足の動作
+		this.rightLeg.xRot = (float) Math.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		this.leftLeg.xRot = (float) Math.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 	}
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		waist.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
-
-
 }
