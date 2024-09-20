@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.player.Player;
@@ -62,7 +63,7 @@ public class BlueSkeleton extends WitherSkeleton {
     public LivingEntity getOwner() {
         try {
             UUID uuid = this.ownerUUID;
-            return uuid == null ? null : this.getCommandSenderWorld().getPlayerByUUID(uuid); // getCommandSenderWorld()でアクセス
+            return uuid == null ? null : this.level().getPlayerByUUID(uuid); // level()でアクセス
         } catch (IllegalArgumentException var2) {
             return null;
         }
@@ -97,6 +98,7 @@ public class BlueSkeleton extends WitherSkeleton {
         return super.mobInteract(player, hand);
     }
 
+    // 日光耐性の追加
     @Override
     public void tick() {
         super.tick();
